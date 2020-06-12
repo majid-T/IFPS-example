@@ -1,3 +1,17 @@
+# IPFS sample project using react
+
+Note: if using localhosted IPFS remember to allow CORS on config file in .ipfs directory
+
+```javascript
+   "API": {
+    "HTTPHeaders": {
+      "Access-Control-Allow-Origin": [
+        "*"
+      ]
+    }
+  },
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +80,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+```
+
+```
