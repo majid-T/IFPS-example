@@ -14,6 +14,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [loadingMsg, setLoadingMsg] = useState("Msg comes here..");
   const [fileBuffer, setFileBuffer] = useState(null);
+  const [srcIpfs, setSrcIpfs] = useState("local");
+  const [resUrl, setResUrl] = useState("http://localhost:8080/ipfs/");
 
   //Function to submit file to IPFS
   const submitToIPFSLocal = async (e) => {
@@ -21,10 +23,20 @@ function App() {
     setLoading(true);
     setLoadingMsg("File is being uploaded to IPFS");
 
-    for await (const result of ipfsLocal.add(fileBuffer)) {
-      setResourceHash(result.path);
-      setLoading(false);
-      setLoadingMsg("Data stored succesfully on IPFS with above hash");
+    if (srcIpfs === "local") {
+      for await (const result of ipfsLocal.add(fileBuffer)) {
+        setResourceHash(result.path);
+        setLoading(false);
+        setLoadingMsg("Data stored succesfully on IPFS with above hash");
+      }
+    } else if (srcIpfs === "infura") {
+      for await (const result of ipfsInfura.add(fileBuffer)) {
+        setResourceHash(result.path);
+        setLoading(false);
+        setLoadingMsg("Data stored succesfully on IPFS with above hash");
+      }
+    } else {
+      console.log("else");
     }
   };
 
@@ -53,13 +65,32 @@ function App() {
     setLoadingMsg("Geting file from IPFS");
   };
 
+  //Toggle IPFS network
+  const toggleIpfsNetwork = () => {
+    if (srcIpfs === "local") {
+      setSrcIpfs("infura");
+      setResUrl("https://ipfs.io/ipfs/");
+    } else {
+      setSrcIpfs("local");
+      setResUrl("http://localhost:8080/ipfs/");
+    }
+  };
+
   return (
     <div>
       <h1>IPFS File Upload</h1>
-      <form onSubmit={submitToIPFSLocal}>
-        <input type="file" onChange={readFile} />
-        <input type="submit" />
-      </form>
+      <h2>You are on network {srcIpfs}</h2>
+      <div>
+        <label onClick={toggleIpfsNetwork}>{srcIpfs}</label>
+      </div>
+
+      <hr />
+      <input type="file" onChange={readFile} />
+      <button type="button" onClick={submitToIPFSLocal}>
+        Upload to IPFS
+      </button>
+      <hr />
+
       <p>{resourceHash}</p>
       <hr />
       <input type="text" placeholder="File hash to get form IPFS" />
@@ -76,20 +107,19 @@ function App() {
         />
 
         <a
-          href={`http://localhost:8080/ipfs/${resourceHash}`}
+          href={`${resUrl}${resourceHash}`}
           target="_blank"
           rel="noopener noreferrer"
           download
         >
           <button>
             <i className="fas fa-download" />
-            Download From Local
+            Download From IPFS network
           </button>
         </a>
       </div>
     </div>
   );
 }
-//          href={`https://ipfs.io/ipfs/${resourceHash}`}
 
 export default App;
