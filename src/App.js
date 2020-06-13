@@ -16,6 +16,7 @@ function App() {
   const [fileBuffer, setFileBuffer] = useState(null);
   const [srcIpfs, setSrcIpfs] = useState("local");
   const [resUrl, setResUrl] = useState("http://localhost:8080/ipfs/");
+  const [imgUrl, setImageUrl] = useState("./ipfs.png");
 
   //Function to submit file to IPFS
   const submitToIPFSLocal = async (e) => {
@@ -70,20 +71,25 @@ function App() {
     if (srcIpfs === "local") {
       setSrcIpfs("infura");
       setResUrl("https://ipfs.io/ipfs/");
+      setImageUrl("./infura.jpg");
     } else {
       setSrcIpfs("local");
       setResUrl("http://localhost:8080/ipfs/");
+      setImageUrl("./ipfs.png");
     }
   };
 
   return (
-    <div>
+    <div className="App">
       <h1>IPFS File Upload</h1>
       <h2>You are on network {srcIpfs}</h2>
       <div>
-        <label onClick={toggleIpfsNetwork}>{srcIpfs}</label>
+        <img src={imgUrl} className="networkImage" alt="ss-images" />
       </div>
-
+      <div className="center">
+        <h2>Switch network</h2>
+        <input type="checkbox" name="" onClick={toggleIpfsNetwork} />
+      </div>
       <hr />
       <input type="file" onChange={readFile} />
       <button type="button" onClick={submitToIPFSLocal}>
@@ -100,11 +106,6 @@ function App() {
       <div>
         {loading && <span>Loading...</span>}
         <p>{loadingMsg}</p>
-
-        <img
-          src={`http://localhost:8080/ipfs/${resourceHash}`}
-          alt="images-images"
-        />
 
         <a
           href={`${resUrl}${resourceHash}`}
