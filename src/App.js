@@ -78,41 +78,58 @@ function App() {
 
   return (
     <div className="App">
-      <h1>IPFS File Upload</h1>
-      <h2>You are on network {srcIpfs}</h2>
-      <div>
+      <div className="leftDiv">
+        <h1>IPFS File Upload</h1>
+        <h2>You are on network {srcIpfs}</h2>
         <img src={imgUrl} className="networkImage" alt="ss-images" />
+        <div className="center">
+          <h2>Switch network</h2>
+          <input type="checkbox" name="" onClick={toggleIpfsNetwork} />
+        </div>
       </div>
-      <div className="center">
-        <h2>Switch network</h2>
-        <input type="checkbox" name="" onClick={toggleIpfsNetwork} />
-      </div>
-      <hr />
-      <input type="file" onChange={readFile} />
 
-      <hr />
-
-      <p>{resourceHash}</p>
-      <hr />
-      <div>
-        {loading && <span>Loading...</span>}
-        <p>{loadingMsg}</p>
-        <button className="appBtn" type="button" onClick={submitToIPFSLocal}>
-          Upload to IPFS
-        </button>
-        {resourceHash && (
-          <a
-            href={`${resUrl}${resourceHash}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            download
-          >
-            <button className="appBtn">
-              <i className="fas fa-download" />
-              Download From IPFS network
-            </button>
-          </a>
-        )}
+      <div className="rightDiv">
+        <div className="instruct">
+          <ol>
+            <li>Choose a file to be read to buffer</li>
+            <li>
+              Click upload to IPFS to uploud either to Local or Infura IPFS
+              network
+            </li>
+            <li>Click download to retreive file from IPFS</li>
+          </ol>
+        </div>
+        <div>
+          <label class="inputLabel">
+            <input type="file" onChange={readFile} />
+            Select file
+          </label>
+        </div>
+        <div>
+          {resourceHash && (
+            <p className="hashViewBox">File hash: {resourceHash}</p>
+          )}
+        </div>
+        <div>
+          {loading && <span>Loading...</span>}
+          <p>{loadingMsg}</p>
+          <button className="appBtn" type="button" onClick={submitToIPFSLocal}>
+            Upload to IPFS
+          </button>
+          {resourceHash && (
+            <a
+              href={`${resUrl}${resourceHash}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+            >
+              <button className="appBtn">
+                <i className="fas fa-download" />
+                Download From IPFS network
+              </button>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
