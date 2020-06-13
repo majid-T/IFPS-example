@@ -118,3 +118,62 @@ input[type="file"] {
   border-radius: 5px;
   margin: 3%;
 }
+
+/* Loading component CSS */
+.loadingComp {
+  margin-top: 3%;
+  display: flex;
+  position: relative;
+  width: auto;
+  height: 10px;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+.loadingComp span {
+  margin: 0 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: green;
+  margin-top: 10px;
+  animation: 1s animate infinite;
+}
+
+.loadingComp h2 {
+  color: #000000;
+  font-size: 6em;
+  margin-right: 0.3em;
+}
+
+@keyframes animate {
+  20% {
+    background-color: #282c34;
+  }
+  50% {
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+  80% {
+    background-color: #ffffff;
+  }
+}
+
+.loadingComp span:nth-child(1) {
+  position: relative;
+  display: flex;
+  animation-delay: 0.2s;
+}
+
+.loadingComp span:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.loadingComp span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.loadingComp span:nth-child(4) {
+  animation-delay: 0.8s;
+}

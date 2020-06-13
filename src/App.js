@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import Loading from "./componnents/Loading";
 // import ipfs from "ipfs";
 
 const ipfsClient = require("ipfs-http-client");
@@ -111,7 +112,7 @@ function App() {
           )}
         </div>
         <div>
-          {loading && <span>Loading...</span>}
+          {loading && <Loading />}
           <p>{loadingMsg}</p>
           <button className="appBtn" type="button" onClick={submitToIPFSLocal}>
             Upload to IPFS

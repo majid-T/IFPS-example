@@ -1,7 +1,7 @@
 # IPFS sample project using react
 
 Student majid shockoohi Id: 101284289
-![Lab screenshot](/screenShot.png)
+![Lab screenshot](/screenshot.png)
 
 Some notes:
 
