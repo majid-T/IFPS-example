@@ -12,7 +12,7 @@ const ipfsInfura = ipfsClient("https://ipfs.infura.io:5001");
 function App() {
   const [resourceHash, setResourceHash] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loadingMsg, setLoadingMsg] = useState("Msg comes here..");
+  const [loadingMsg, setLoadingMsg] = useState("");
   const [fileBuffer, setFileBuffer] = useState(null);
   const [srcIpfs, setSrcIpfs] = useState("local");
   const [resUrl, setResUrl] = useState("http://localhost:8080/ipfs/");
@@ -58,14 +58,6 @@ function App() {
     };
   };
 
-  //Function to get the file from IPFS by hash code
-  const getFileIPFS = async (e) => {
-    e.preventDefault();
-
-    setLoading(true);
-    setLoadingMsg("Geting file from IPFS");
-  };
-
   //Toggle IPFS network
   const toggleIpfsNetwork = () => {
     if (srcIpfs === "local") {
@@ -92,28 +84,24 @@ function App() {
       </div>
       <hr />
       <input type="file" onChange={readFile} />
-      <button type="button" onClick={submitToIPFSLocal}>
-        Upload to IPFS
-      </button>
+
       <hr />
 
       <p>{resourceHash}</p>
       <hr />
-      <input type="text" placeholder="File hash to get form IPFS" />
-      <button type="button" onClick={getFileIPFS}>
-        Get file
-      </button>
       <div>
         {loading && <span>Loading...</span>}
         <p>{loadingMsg}</p>
-
+        <button className="appBtn" type="button" onClick={submitToIPFSLocal}>
+          Upload to IPFS
+        </button>
         <a
           href={`${resUrl}${resourceHash}`}
           target="_blank"
           rel="noopener noreferrer"
           download
         >
-          <button>
+          <button className="appBtn">
             <i className="fas fa-download" />
             Download From IPFS network
           </button>

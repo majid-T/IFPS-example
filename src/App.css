@@ -92,3 +92,9 @@ input[type="checkbox"]:before {
 input:checked[type="checkbox"]:before {
   left: 20px;
 }
+
+.appBtn {
+  margin: 5px;
+  border-radius: 9px;
+  height: 30px;
+}
