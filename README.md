@@ -1,5 +1,10 @@
 # IPFS sample project using react
 
+Student majid shockoohi Id: 101284289
+![Lab screenshot](/screenShot.png)
+
+Some notes:
+
 Note: if using localhosted IPFS remember to allow CORS on config file in .ipfs directory
 
 ```javascript
@@ -11,6 +16,12 @@ Note: if using localhosted IPFS remember to allow CORS on config file in .ipfs d
     }
   },
 ```
+
+## If using local IPFS
+
+If you are trying to use local IPFS you should donwload and run ipfs daemon before connectiong to it.
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
