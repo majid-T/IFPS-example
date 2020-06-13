@@ -21,6 +21,11 @@ function App() {
   //Function to submit file to IPFS
   const submitToIPFSLocal = async (e) => {
     e.preventDefault();
+
+    if (!fileBuffer) {
+      setLoadingMsg("Please select a file");
+      return;
+    }
     setLoading(true);
     setLoadingMsg("File is being uploaded to IPFS");
 
@@ -95,17 +100,19 @@ function App() {
         <button className="appBtn" type="button" onClick={submitToIPFSLocal}>
           Upload to IPFS
         </button>
-        <a
-          href={`${resUrl}${resourceHash}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          download
-        >
-          <button className="appBtn">
-            <i className="fas fa-download" />
-            Download From IPFS network
-          </button>
-        </a>
+        {resourceHash && (
+          <a
+            href={`${resUrl}${resourceHash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+          >
+            <button className="appBtn">
+              <i className="fas fa-download" />
+              Download From IPFS network
+            </button>
+          </a>
+        )}
       </div>
     </div>
   );
