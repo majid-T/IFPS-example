@@ -1,5 +1,14 @@
 # IPFS sample project using react
 
+ <div align="center" >
+      <img
+        src="/ipfs.png"
+        alt="ipfs"
+        width="75%"
+        height="75%"
+      />
+  </div>
+
 This is a simple demonstration on how to hash a file, then store its hash on public blockchain (here
 ehthereum) and store the original file on IPFS. Later we can use that hash to retrive the file from IPFS.
 
@@ -27,6 +36,6 @@ If you are trying to use local IPFS you should donwload and run ipfs daemon befo
 
 ### Technologies and tools used in this project
 
-- [Solidity] (https://solidity.readthedocs.io/en/v0.7.0/) - Programing language for Ethereum.
+- [Solidity](https://solidity.readthedocs.io/en/v0.7.0/) - Programing language for Ethereum.
 - [ReactJS](https://reactjs.org/) - Frontend javascript library
 - [Bootstrap](https://getbootstrap.com/) - CSS library for responsive mobile first design
